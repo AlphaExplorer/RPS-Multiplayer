@@ -1,3 +1,5 @@
+// VARIABLE DEFINITIONS----------------------------------------------------------------------
+
 // Get elements to update
 const yourImgToUpdate = $('#yourChoiceImg');
 const yourTextToUpdate = $('#yourChoiceText');
@@ -30,6 +32,28 @@ let alertDiv = {
 // Track player score
 let yourScore = 0;
 let myScore = 0;
+//********************************************************************************************
+
+
+// DATABASE SET UP----------------------------------------------------------------------------
+
+// Firebase configuration
+var config = {
+	apiKey: "AIzaSyB8UEfppJBc5GzYJi53GXt4ew0y4XZkjo0",
+	authDomain: "rps-multiplayer-35078.firebaseapp.com",
+	databaseURL: "https://rps-multiplayer-35078.firebaseio.com/",
+	projectId: "rps-multiplayer-35078",
+	storageBucket: "",
+	messagingSenderId: "922964639093",
+	appId: "1:922964639093:web:37433af3d8a48cfa"
+};
+
+// Initialize Firebase
+firebase.initializeApp(config);
+var database = firebase.database();
+//********************************************************************************************
+
+// FUNCTION DEVELOPEMENT---------------------------------------------------------------------
 
 // Function to update images
 const updateImg = (img, val) => {
@@ -82,8 +106,9 @@ const resetPlayBtn = () => {
 	$('#alertResult').children().remove();
 	$('#letsPlay').text("Play");
 };
+//****************************************************************************************
 
-// Make the game
+// GAME LOGIC---------------------------------------------------------------------------
 $(document).ready( function() {
 
 	// Disable play button on page load.
@@ -105,6 +130,9 @@ $(document).ready( function() {
 		yourTextToUpdate.text(value);
 		updateImg(yourImgToUpdate, value);
 		disablePlay();
+		database.ref().set({
+			playerOneChoice: value
+		  })
 
 	});
 
@@ -134,21 +162,28 @@ $(document).ready( function() {
 			myTextToUpdate.text(computerChoice);
 			updateImg(myImgToUpdate, computerChoice);
 
-			if (userChoice === computerChoice) {
+			if (userChoice === computerChoice) 
+			{
 				updateAlert(alertDiv.draw);
-			} else if (userChoice === "Rock") {
-				if (computerChoice === "Scissors") {
+			} 
+			else if (userChoice === "Rock") 
+			{
+				if (computerChoice === "Scissors") 
+				{
 					alertScore(alertDiv.win, "yourScore");
-				} else {
-					alertScore(alertdiv.loose, "myScore");
+				} else 
+				{
+					alertScore(alertDiv.loose, "myScore");
 				}
-			} else if (userChoice === "Paper") {
+			} 
+			else if (userChoice === "Paper") {
 				if (computerChoice === "Rock") {
 					alertScore(alertDiv.win, "yourScore");
 				} else {
 					alertScore(alertDiv.loose, "myScore");
 				}
-			} else if (userChoice === "Scissors") {
+			} 
+			else if (userChoice === "Scissors") {
 				if (computerChoice === "Rock") {
 					alertScore(alertDiv.loose, "myScore");
 				} else {

@@ -7,9 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>RPS-Multiplayer</title>
     <!-- Bootstrap core CSS -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <link href="assets/css/style.css" rel="stylesheet">
-      <link href="assets/scss/style.scss" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -26,8 +25,10 @@
         
         <hr>
 
-        <!-- CONTENT BODY START -->
-        <section class="row">
+        <!-- GAME BOARD START -->
+        <section class="row justify-content-center">
+
+            <!-- LEFT PLAYER PANNEL START -->
             <div class="col-sm-6 col-md-4 col-md-offset-2">
                 <div class="btn-group-flex m-b-1" role="group" aria-label="Your Choice Buttons" id="chooseBtns">
                     <button type="button" class="btn btn-secondary btn-choice" id="btnRock">Rock</button>
@@ -42,6 +43,9 @@
                 </div>
                 <div class="alert alert-info" role="alert" id="yourScore"><strong>Your Score!</strong><span class="m-l-1"></span></div>
             </div>
+            <!-- LEFT PLAYER PANNEL END -->
+
+            <!-- RIGHT PLAYER PANNEL START -->
             <div class="col-sm-6 col-md-4">
                 <button type="button" class="btn btn-block btn-secondary m-b-1" id="letsPlay">Play</button>
                 <div class="card" id="yourCard">
@@ -52,12 +56,16 @@
                 </div>
                 <div class="alert alert-info" role="alert" id="myScore"><strong>My Score!</strong><span class="m-l-1"></span></div>
             </div>
+            <!-- RIGHT PLAYER PANNEL END -->
+
+            <!-- START OVER PANNEL -->
             <div class="col-xs-12 col-md-8 col-md-offset-2">
                 <button type="button" class="btn btn-lg btn-block btn-secondary m-b-1" id="startOver">Start Over</button>
             </div>
-        
+            <!-- START OVER PANNEL -->
+
         </section>
-        <!-- CONTENT BODY END -->
+        <!-- GAME BOARD END -->
 
     </main>
     <!-- ON SCREEN CONTENT END -->
@@ -82,37 +90,33 @@
 
 
 
+    <!-- SCRIPTS START -->
+
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+    <!-- BOOTSTRAP -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
 
-    <!-- JQuery -->
-    <script
-    src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
-
-    <!-- Firebase -->
+    <!-- FIREBASE -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebase/6.3.5/firebase-database.js"></script> -->
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
     https://firebase.google.com/docs/web/setup#config-web-app -->
 
-    <script>
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-        apiKey: "AIzaSyB8UEfppJBc5GzYJi53GXt4ew0y4XZkjo0",
-        authDomain: "rps-multiplayer-35078.firebaseapp.com",
-        databaseURL: "https://rps-multiplayer-35078.firebaseio.com",
-        projectId: "rps-multiplayer-35078",
-        storageBucket: "",
-        messagingSenderId: "922964639093",
-        appId: "1:922964639093:web:37433af3d8a48cfa"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    </script>
-    <!-- Custom scripts -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+
+
+    <!-- CUSTOM JAVASCRIPT -->
     <script src="assets/js/logic.js"></script>
+
+    <!-- SCRIPTS END -->
 
 </body>
 </html>
