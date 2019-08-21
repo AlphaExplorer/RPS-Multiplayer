@@ -7,12 +7,22 @@ const myImgToUpdate = $('#myChoiceImg');
 const myTextToUpdate = $('#myChoiceText');
 const alertResult = $('#alertResult');
 const alertModal = $('#resultModal');
+const alertSignIn = $('#signInModal');
 const alertYourScore = $('#yourScore');
 const alertMyScore = $('#myScore');
 const recordYourScore = $('#yourScore span');
 const recordMyScore = $('#myScore span');
 const startOver = $('#startOver');
 const letsPlay = $('#letsPlay');
+const signIn = $('#sign-in')
+const chooseOpponent = $("#chooseOpponent")
+const chooseBtns = $('#chooseBtns')
+var userName = "";
+var Id = "";
+var userId = "";
+var userChoice = "";
+var userMessages = "";
+var usersArray = [];
 
 // Store images in object
 let images = {
@@ -54,6 +64,30 @@ var database = firebase.database();
 //********************************************************************************************
 
 // FUNCTION DEVELOPEMENT---------------------------------------------------------------------
+//function that writes to the database
+
+function writeUserData(userId) 
+{
+	firebase.database().ref('users/' + userId).set(
+	{
+	  userName: userName,
+	  Id: Id,
+	  userChoice: userChoice,
+	});
+  }
+
+function opponentListCreator()
+{
+	database.ref("/users").once("value", function(snapshot) 
+	{
+		var userdata = snapshot.val()
+		console.log(userdata)
+		for(var i=0;i<=userdata.lenght;i++)
+		{
+			console.log(Object.keys(users))
+		}
+	})
+};
 
 // Function to update images
 const updateImg = (img, val) => {
@@ -86,6 +120,12 @@ const updateAlert = (alert) => {
 	alertModal.modal('toggle');
 };
 
+// Function that tiggers sign in form
+const signInAlert = (alert) => {
+	alertSignIn.modal('toggle');
+
+};
+
 // Function to update the score
 const updateScore = (score) => {
 	(score === "yourScore") ? yourScore += 1 : myScore += 1;
@@ -95,6 +135,17 @@ const updateScore = (score) => {
 const alertScore = (theAlert, theScore) => {
 	updateAlert(theAlert);
 	updateScore(theScore);
+};
+
+// Disable the choose opponent button function until a user has signed in
+const disableChoseOpponent = () => {
+	(signIn.text() === "Sign in") ? chooseOpponent.attr('disabled', true) : chooseOpponent.attr('disabled', false);
+};
+
+
+// Disable the user choice button function until a user has selected an opponent
+const disableUserChoice = () => {
+	(chooseOpponent.text() === "Pick an Opponent") ? chooseBtns.attr('disabled', true) : chooseBtns.attr('disabled', false);
 };
 
 // Disable the play button function until an option is chosen
@@ -110,9 +161,27 @@ const resetPlayBtn = () => {
 
 // GAME LOGIC---------------------------------------------------------------------------
 $(document).ready( function() {
+	opponentListCreator()
+	// disableChoseOpponent();
+	$('#sign-in').click( function() {
+		signInAlert();
+	});
 
-	// Disable play button on page load.
+	$('#signInSubmit').click(function(){
+		userName = $("#playerName").val();
+		Id = Date.now().toString();
+		userId = userName+"-"+Id;
+		writeUserData(userId);
+		$("#sign-in").html(userName);
+		$("#sign-in").prop("disabled",true);
+		disableChoseOpponent();
+	});
+
+
+	// Disable buttons on page load.
+	$('#chooseOpponent').attr('disabled', true);
 	$('#letsPlay').attr('disabled', true);
+	$('#chooseBtns').attr('disabled', true);
 
 	// Reset the choices, images and play
 	// button state back to default.
@@ -120,19 +189,21 @@ $(document).ready( function() {
 		resetImg();
 		resetPlayBtn();
 		disablePlay();
+		disableChoseOpponent();
 	});
 
 	// Capture user choice info and enable
 	// play button.
 	$('.btn-choice').click( function() {
 
-		var value = $(this).text();
-		yourTextToUpdate.text(value);
-		updateImg(yourImgToUpdate, value);
+		userChoice = $(this).text();
+		yourTextToUpdate.text(userChoice);
+		updateImg(yourImgToUpdate, userChoice);
 		disablePlay();
-		database.ref().set({
-			playerOneChoice: value
-		  })
+		database.ref("/users/"+userId).update(
+			{
+				userChoice:userChoice,
+			})
 
 	});
 

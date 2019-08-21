@@ -30,54 +30,126 @@
 
             <!-- LEFT PLAYER PANNEL START -->
             <div class="col-sm-6 col-md-4 col-md-offset-2">
-                <div class="btn-group-flex m-b-1" role="group" aria-label="Your Choice Buttons" id="chooseBtns">
-                    <button type="button" class="btn btn-secondary btn-choice" id="btnRock">Rock</button>
-                    <button type="button" class="btn btn-secondary btn-choice" id="btnPaper">Paper</button>
-                    <button type="button" class="btn btn-secondary btn-choice" id="btnScissors">Scissors</button>
-                </div>
+                <!-- <div class="card-header rounded bg-secondary text-md-center text-white"> -->
+                    <button type="button" class="btn btn-block btn-secondary m-b-1" id="sign-in">Sign in</button>
+                <!-- </div> -->
+
                 <div class="card" id="yourCard">
                     <img class="card-img-top img-fluid p-a-1" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/201958/Rock-Paper-Scissors-04-04.png" alt="Card image cap" id="yourChoiceImg">
+
                     <div class="card-footer text-muted">
                         <strong>Your Choice: </strong><span id="yourChoiceText"></span>
                     </div>
                 </div>
-                <div class="alert alert-info" role="alert" id="yourScore"><strong>Your Score!</strong><span class="m-l-1"></span></div>
+                    <div class="alert alert-info" role="alert" id="yourScore">
+                        <strong>Your Score!</strong>
+                        <span class="m-l-1"></span>
+                    </div>
+                
             </div>
             <!-- LEFT PLAYER PANNEL END -->
 
             <!-- RIGHT PLAYER PANNEL START -->
             <div class="col-sm-6 col-md-4">
-                <button type="button" class="btn btn-block btn-secondary m-b-1" id="letsPlay">Play</button>
+                <div class="dropdown bg-secondary rounded text-md-center">
+                    <!-- <div class=""> -->
+                        <button class="btn btn-secondary dropdown-toggle col-sm-12 col-md-12" type="button" id="chooseOpponent" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Pick an Opponent
+                        </button>
+                        <div class="dropdown-menu col-sm-12 col-md-12" aria-labelledby="chooseOpponent">
+                            <a class="dropdown-item" href="#">John</a>
+                            <a class="dropdown-item" href="#">Peter</a>
+                            <a class="dropdown-item" href="#">Charles</a>
+                        </div>
+                    <!-- </div> -->
+                </div>
+
+                <div class="card" id="yourCard">
+                    <img class="card-img-top img-fluid p-a-1" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/201958/Rock-Paper-Scissors-04-04.png" alt="Card image cap" id="myChoiceImg">
+
+                    <div class="card-footer text-muted">
+                        <strong>Opponent's Choice: </strong><span id="myChoiceText"></span>
+                    </div>
+                </div>
+                <div class="alert alert-info" role="alert" id="myScore">
+                    <strong>Opponent's Score</strong>
+                    <span class="m-l-1"></span>
+                </div>
+            </div>
+            <!-- RIGHT PLAYER PANNEL END -->
+
+            <!-- CHAT PANNEL START -->
+            <div class="col-sm-6 col-md-4">
+                    <div class="card-header rounded bg-secondary text-md-center text-white">
+                        <strong>Chat</strong>
+                    </div>
                 <div class="card" id="yourCard">
                     <img class="card-img-top img-fluid p-a-1" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/201958/Rock-Paper-Scissors-04-04.png" alt="Card image cap" id="myChoiceImg">
                     <div class="card-footer text-muted">
                         <strong>My Choice: </strong><span id="myChoiceText"></span>
                     </div>
                 </div>
-                <div class="alert alert-info" role="alert" id="myScore"><strong>My Score!</strong><span class="m-l-1"></span></div>
+                <div class="alert alert-info" role="alert" id="myScore">
+                    <strong>My Score!</strong><span class="m-l-1"></span>
+                </div>
             </div>
-            <!-- RIGHT PLAYER PANNEL END -->
+            <!-- CHAT PANNEL END -->
 
-            <!-- START OVER PANNEL -->
-            <div class="col-xs-12 col-md-8 col-md-offset-2">
-                <button type="button" class="btn btn-lg btn-block btn-secondary m-b-1" id="startOver">Start Over</button>
+
+            <!-- BUTTONS START -->
+            <div class="col-sm-6 col-md-4">
+                <div class="btn-group-flex m-b-1" role="group" aria-label="Your Choice Buttons" id="chooseBtns">
+                    <button type="button" class="btn btn-secondary btn-choice" id="btnRock">Rock</button>
+                    <button type="button" class="btn btn-secondary btn-choice" id="btnPaper">Paper</button>
+                    <button type="button" class="btn btn-secondary btn-choice" id="btnScissors">Scissors</button>
+                </div>
             </div>
-            <!-- START OVER PANNEL -->
+                <div class="col-sm-6 col-md-4">
+                    <button type="button" class="btn btn-block btn-secondary m-b-1" id="letsPlay">Submit your choice</button>
+                </div>
+            </div>
 
+            <div class="col-sm-6 col-md-4">
+                <button type="button" class="btn btn-block btn-secondary m-b-1" id="startOver">Start Over</button>
+            </div>
+            <!-- BUTTONS END -->
         </section>
         <!-- GAME BOARD END -->
+
 
     </main>
     <!-- ON SCREEN CONTENT END -->
         
+    <!-- SIGN IN START-->
+    <div class="modal fade" id="signInModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Sign in</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="signInName">
+                    <label for="exampleInputEmail1">Name</label>
+                    <input type="text" class="form-control" id="playerName"  placeholder="Name">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal" id="signInSubmit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- SIGN OUT END -->
+
+
     <!-- POP UP RESULT START-->
     <div class="modal fade" id="resultModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
+                    <h4 class="modal-title">RESULT!</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">RESULT!</h4>
                 </div>
                 <div class="modal-body" id="alertResult"></div>
                 <div class="modal-footer">
@@ -96,21 +168,16 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
     <!-- BOOTSTRAP -->
+    <script src="assets/proper/popper.min.js"></script>
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
 
     <!-- FIREBASE -->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script> -->
-    <!-- <script src="https://www.gstatic.com/firebase/6.3.5/firebase-database.js"></script> -->
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-    https://firebase.google.com/docs/web/setup#config-web-app -->
-
-    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-database.js"></script>
 
 
     <!-- CUSTOM JAVASCRIPT -->
